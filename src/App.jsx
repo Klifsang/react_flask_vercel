@@ -1,10 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [content, setContent] = useState(0)
+
+  useEffect(() =>{
+    const fetchData = async() =>{
+      const response = await fetch('http://127.0.0.1:5000')
+      const data = await response.json()
+      setContent(data.title)
+    }
+    fetchData()
+  },[])
 
   return (
     <>
@@ -27,6 +37,9 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
+      </p>
+      <p className="read-the-docs">
+        {content}
       </p>
     </>
   )
