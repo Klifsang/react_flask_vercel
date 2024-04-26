@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() =>{
     const fetchData = async() =>{
-      const response = await fetch('/')
+      const response = await fetch('/hello')
       console.log(response)
       const data = await response.json()
       setContent(data.title)
